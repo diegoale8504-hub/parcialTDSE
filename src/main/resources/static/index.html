@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search App</title>
+</head>
+<body>
+
+<h2>Buscar elemento</h2>
+
+<label>Lista (separada por comas):</label><br>
+<input type="text" id="list" placeholder="10,20,13,40,60"><br><br>
+
+<label>Valor:</label><br>
+<input type="text" id="value" placeholder="13"><br><br>
+
+<button onclick="linearSearch()">Linear Search</button>
+<button onclick="binarySearch()">Binary Search</button>
+
+<h3>Resultado:</h3>
+<p id="result"></p>
+
+<script>
+
+    function linearSearch() {
+        let list = document.getElementById("list").value;
+        let value = document.getElementById("value").value;
+
+        fetch(`http://localhost:8080/linearsearch?list=${list}&value=${value}`)
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("result").innerText = data;
+            });
+    }
+
+    function binarySearch() {
+        let list = document.getElementById("list").value;
+        let value = document.getElementById("value").value;
+
+        fetch(`http://localhost:8080/binarysearch?list=${list}&value=${value}`)
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("result").innerText = data;
+            });
+    }
+
+</script>
+
+</body>
+</html>
